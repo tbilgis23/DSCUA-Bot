@@ -198,7 +198,7 @@ client.on('message', async (message) => {
         if (message.content.toLowerCase() === '$event_list'){
             if (eventListArr.length === 0){
                 var eventList = new MessageEmbed()
-                .setDescription('There are no events scheduled for now.\nIf you want to create an event type `$event` in a channel.')
+                .setDescription('There are no events scheduled for now.\nIf you want to create an event, type `$event` in a channel.')
             } else {
                 var eventList = new MessageEmbed()
                 .addFields({name: 'Here are the list of events:', value: eventListArr.join('\n')})
@@ -207,7 +207,7 @@ client.on('message', async (message) => {
         } else {
             if (eventListArr.length === 0){
                 var eventList = new MessageEmbed()
-                .setDescription('There are no events scheduled for now.\nIf you want to create an event type `$event` in a channel.')
+                .setDescription('There are no events scheduled for now.\nIf you want to create an event, type `$event` in a channel.')
                 message.channel.send(eventList)
                 return
             } else {
