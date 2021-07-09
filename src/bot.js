@@ -6,7 +6,6 @@ const mongoose = require("mongoose");
 const { google } = require("calendar-link");
 const Event = require("./schemas/MessageSchema");
 const { DateTime } = require('luxon');
-var flag12 = false;
 const ObjectId = require('mongoose').Types.ObjectId;
 
 
@@ -17,11 +16,6 @@ checkForPosts()
 
 client.on('ready', () => {
     console.log(`${client.user.tag} has logged in.`)
-    // if (!flag12) {
-    //     checkForPosts()
-    //     flag12 = true
-    // }
-
 })
 
 client.on('message', async (message) => {
@@ -226,7 +220,6 @@ client.on('message', async (message) => {
             if (eventRemove === 0){
                 return
             } else if (0<eventRemove<=eventListId.length){
-                console.log(String(eventListId[eventRemove-1]))
                 await Event.deleteMany({ _id: new ObjectId(String(eventListId[eventRemove-1])) })
                 message.channel.send("Event removed successfully.")
             } else {
