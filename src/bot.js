@@ -143,7 +143,7 @@ client.on('message', async (message) => {
         }
         const eventImage = eventImageAns
         try {
-            const newEventLink = {
+            var newEventLink = {
                 // Google Calendar object.
                 title: eventTitle,
                 description: eventDescription,
