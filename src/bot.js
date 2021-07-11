@@ -162,7 +162,7 @@ client.on('message', async (message) => {
                 {name: "Time", value: `${eventDate.toLocaleString(DateTime.DATETIME_FULL)}\nDuration: ${eventDurationAns}\n[Add to Google Calendar](${google(newEventLink)})` }, 
                 {name: "Location", value: `[DSCUA Youtube Channel](https://www.youtube.com/channel/UCvh6IBI7dg_IjjZ_wBo2jZw)`})
             .setImage(eventImage)
-            .setColor("#0198E1");
+            .setColor("#4285F4");
         
         const eventChannelid = await client.channels.fetch(eventChannel)
         eventChannelid.send({embed: eventEmbed})
@@ -260,8 +260,8 @@ async function checkForPosts() {
             const event_embed = await new MessageEmbed()
             .addFields({name: `${event.event_title} is Live!`, 
             value: `Hey @everyone, the event is currently live on our [youtube channel](https://www.youtube.com/channel/UCvh6IBI7dg_IjjZ_wBo2jZw)!`},
-            {name: `> Event Description`, value: `> ${event.event_description}`})
-            .setColor("#0198E1")
+            {name: `> Event Description`, value: `> ${event.event_description}\n[RSVP here on our website]()`})
+            .setColor("#0F9D58")
             .setImage(event.event_image);
             messageChannel.send({embed: event_embed});
             messageChannel.send('@everyone')
@@ -277,7 +277,7 @@ async function checkForPosts() {
             .addFields({name: `${event.event_title} is in 15 minutes!`, 
             value: `Hey @everyone, the event will be live on our [youtube channel](https://www.youtube.com/channel/UCvh6IBI7dg_IjjZ_wBo2jZw) in 15 minutes!`},
             {name: `> Event Description`, value: `> ${event.event_description}`})
-            .setColor("#0198E1")
+            .setColor("#F4B400")
             .setImage(event.event_image);
             messageChannel.send({embed: event_embed});
             messageChannel.send('@everyone')
@@ -293,7 +293,7 @@ async function checkForPosts() {
             .addFields({name: `${event.event_title} is in 24 hours!`, 
             value: `Hey @everyone, the event will be live on our [youtube channel](https://www.youtube.com/channel/UCvh6IBI7dg_IjjZ_wBo2jZw) in 24 hours!`},
             {name: `> Event Description`, value: `> ${event.event_description}`+`\n\n[Add to Google Calendar](${google(eventLink)})`})
-            .setColor("#0198E1")
+            .setColor("#DB4437")
             .setImage(event.event_image);
             messageChannel.send({ embed: event_embed });
             messageChannel.send('@everyone')
@@ -307,8 +307,9 @@ async function checkForPosts() {
 
 client.on('guildMemberAdd', async (member) => {
     newMemberEmbed = new MessageEmbed()
-    .addFields({name: "Welcome to University of Arizona Developer Student Club!", value:`Greetings from Developer Student Clubs at The University of Arizona (DSCUA)! We welcome you to learn more about us and watch some of our past events on our [official website](https://dsc.community.dev/the-university-of-arizona/). There are many more events to come but for now, feel free to also look through our channels to see what interests you and chat with other like minded students like yourself!`},
-    {name: "Links", value: "[Linkedin](https://www.linkedin.com/company/dscua/)"})
+    .addFields({name: "Welcome to University of Arizona Developer Student Club!", value:`Greetings from Developer Student Clubs at The University of Arizona (DSCUA)! We welcome you to learn more about us, become an official member, and watch some of our past events on our [website](https://dsc.community.dev/the-university-of-arizona/). There are many more events to come but for now, feel free to also look through our channels to see what interests you and chat with other like minded students like yourself!`},
+    {name: "Links", value: "[Website](https://dsc.community.dev/the-university-of-arizona/)\n([Instagram](https://www.instagram.com/dscua/?hl=en)\n[Facebook](https://www.facebook.com/dscua/)\n[Linkedin](https://www.linkedin.com/company/dscua/)"})
+    .setColor("#4285F4");
     member.send(newMemberEmbed)
 })
 client.login(process.env.DISCORDJS_BOT_TOKEN);
