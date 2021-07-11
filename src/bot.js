@@ -260,7 +260,7 @@ async function checkForPosts() {
             const event_embed = await new MessageEmbed()
             .addFields({name: `${event.event_title} is Live!`, 
             value: `Hey @everyone, the event is currently live on our [youtube channel](https://www.youtube.com/channel/UCvh6IBI7dg_IjjZ_wBo2jZw)!`},
-            {name: `> Event Description`, value: `>>> ${event.event_description}\n\n[RSVP Here](https://dsc.community.dev/the-university-of-arizona/)`})
+            {name: `> Event Description`, value: `> ${event.event_description}\n\n[RSVP Here](https://dsc.community.dev/the-university-of-arizona/)`})
             .setColor("#0F9D58")
             .setImage(event.event_image);
             messageChannel.send({embed: event_embed});
@@ -276,7 +276,7 @@ async function checkForPosts() {
             const event_embed = await new MessageEmbed() 
             .addFields({name: `${event.event_title} is in 15 minutes!`, 
             value: `Hey @everyone, the event will be live on our [youtube channel](https://www.youtube.com/channel/UCvh6IBI7dg_IjjZ_wBo2jZw) in 15 minutes!`},
-            {name: `> Event Description`, value: `>>> ${event.event_description}\n\n[RSVP Here](https://dsc.community.dev/the-university-of-arizona/)`})
+            {name: `> Event Description`, value: `> ${event.event_description}\n\n[RSVP Here](https://dsc.community.dev/the-university-of-arizona/)`})
             .setColor("#F4B400")
             .setImage(event.event_image);
             messageChannel.send({embed: event_embed});
@@ -292,7 +292,7 @@ async function checkForPosts() {
             const event_embed = await new MessageEmbed()
             .addFields({name: `${event.event_title} is in 24 hours!`, 
             value: `Hey @everyone, the event will be live on our [youtube channel](https://www.youtube.com/channel/UCvh6IBI7dg_IjjZ_wBo2jZw) in 24 hours!`},
-            {name: `> Event Description`, value: `>>> ${event.event_description}`+`\n\n[RSVP Here](https://dsc.community.dev/the-university-of-arizona/)\n[Add to Google Calendar](${google(eventLink)})`})
+            {name: `> Event Description`, value: `> ${event.event_description}`+`\n\n[RSVP Here](https://dsc.community.dev/the-university-of-arizona/)\n[Add to Google Calendar](${google(eventLink)})`})
             .setColor("#DB4437")
             .setImage(event.event_image);
             messageChannel.send({ embed: event_embed });
