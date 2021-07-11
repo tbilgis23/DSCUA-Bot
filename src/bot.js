@@ -280,7 +280,7 @@ async function checkForPosts() {
     }}
     const resultsDay = await Event.find(currentTimeOneDay).catch(err => {return []})
     for (const event of resultsDay) {
-        const eventLink = event.event_link
+        const eventLink = await event.event_link
         if (event.dayReminder == false) {
             const messageChannel = await client.channels.fetch(event.event_channel);
             const event_embed = await new MessageEmbed()
