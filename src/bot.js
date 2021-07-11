@@ -162,6 +162,7 @@ client.on('message', async (message) => {
                 {name: "Time", value: `${eventDate.toLocaleString(DateTime.DATETIME_FULL)}\nDuration: ${eventDurationAns}\n\n[Add to Google Calendar](${google(newEventLink)})` }, 
                 {name: "Location", value: `[DSCUA Youtube Channel](https://www.youtube.com/channel/UCvh6IBI7dg_IjjZ_wBo2jZw)`})
             .setImage(eventImage)
+            .setColor("#0198E1");
         
         const eventChannelid = await client.channels.fetch(eventChannel)
         eventChannelid.send({embed: eventEmbed})
@@ -258,7 +259,8 @@ async function checkForPosts() {
             const event_embed = await new MessageEmbed()
             .addFields({name: `${event.event_title} is Live!`, 
             value: `Hey @here, the event is currently live on our [youtube channel](https://www.youtube.com/channel/UCvh6IBI7dg_IjjZ_wBo2jZw)!`},
-            {name: `> Event Description`, value: `> ${event.event_description}`});
+            {name: `> Event Description`, value: `> ${event.event_description}`})
+            .setColor("#0198E1");
             messageChannel.send({embed: event_embed});
             messageChannel.send('@here')
             event.liveReminder = true
@@ -272,7 +274,8 @@ async function checkForPosts() {
             const event_embed = await new MessageEmbed()
             .addFields({name: `${event.event_title} is in 15 minutes!`, 
             value: `Hey @here, the event is will be live on our [youtube channel](https://www.youtube.com/channel/UCvh6IBI7dg_IjjZ_wBo2jZw) in 15 minutes!`},
-            {name: `> Event Description`, value: `> ${event.event_description}`});
+            {name: `> Event Description`, value: `> ${event.event_description}`})
+            .setColor("#0198E1");
             messageChannel.send({embed: event_embed});
             messageChannel.send('@here')
             event.min15Reminder = true
@@ -286,7 +289,8 @@ async function checkForPosts() {
             const event_embed = await new MessageEmbed()
             .addFields({name: `${event.event_title} is in 24 hours!`, 
             value: `Hey @here, the event will be live on our [youtube channel](https://www.youtube.com/channel/UCvh6IBI7dg_IjjZ_wBo2jZw) in 24 hours!`},
-            {name: `> Event Description`, value: `> ${event.event_description}`}, {name: "", value:`[Add to Google Calendar](${google(eventLink)})`});
+            {name: `> Event Description`, value: `> ${event.event_description}`}, {name: " ", value:`[Add to Google Calendar](${google(eventLink)})`})
+            .setColor("#0198E1");
             messageChannel.send({ embed: event_embed });
             messageChannel.send('@here')
             event.dayReminder = true
