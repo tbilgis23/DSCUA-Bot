@@ -143,7 +143,7 @@ client.on('message', async (message) => {
         }
         const eventImage = eventImageAns
         try {
-            var newEventLink = {
+            const newEventLink = {
                 // Google Calendar object.
                 title: eventTitle,
                 description: eventDescription,
@@ -176,7 +176,8 @@ client.on('message', async (message) => {
            min15Reminder: false,
            dayReminder: false,
            liveReminder: false,
-           guildId: message.guild.id
+           guildId: message.guild.id,
+           event_link: google(newEventLink)
         })
     } else if (message.content.toLowerCase() === "$event_cancel" || message.content.toLowerCase() === "$event_list") {
         if (!message.member.hasPermission("MANAGE_CHANNELS")) return
@@ -250,7 +251,6 @@ async function checkForPosts() {
         event_time_string: currentTimeDayBefore 
     }
     
-    
     const resultsNow = await Event.find(currentTime).catch((err) => {return []})
     for (const event of resultsNow) {
         if (event.liveReminder == false) {
@@ -280,12 +280,13 @@ async function checkForPosts() {
     }}
     const resultsDay = await Event.find(currentTimeOneDay).catch(err => {return []})
     for (const event of resultsDay) {
+        const eventLink = event.event_link
         if (event.dayReminder == false) {
             const messageChannel = await client.channels.fetch(event.event_channel);
             const event_embed = await new MessageEmbed()
             .addFields({name: `${event.event_title} is in 24 hours!`, 
             value: `Hey @here, the event will be live on our [youtube channel](https://www.youtube.com/channel/UCvh6IBI7dg_IjjZ_wBo2jZw) in 24 hours!`},
-            {name: `> Event Description`, value: `> ${event.event_description}`}, {value:`[Add to Google Calendar](${google(newEventLink)})`});
+            {name: `> Event Description`, value: `> ${event.event_description}`}, {value:`[Add to Google Calendar](${google(eventLink)})`});
             messageChannel.send({embed: event_embed});
             messageChannel.send('@here')
             event.dayReminder = true
@@ -298,8 +299,8 @@ async function checkForPosts() {
 
 client.on('guildMemberAdd', async (member) => {
     newMemberEmbed = new MessageEmbed()
-    .addFields({name: "Welcome to University of Arizona Developer Student Club!", value:`Greetings from Developer Student Clubs at The University of Arizona (DSCUA)! We welcome you to learn more about us and watch some of our past events on our [website](https://dsc.community.dev/the-university-of-arizona/). There are many more events to come but for now, feel free to also look through our channels to see what interests you and chat with other like minded students like yourself!`},
-    {name: "Links", value: "[Official Website](https://dsc.community.dev/the-university-of-arizona/)\n[Instagram](https://www.instagram.com/dscua/)\n[Facebook](https://www.facebook.com/dscua)\n[Linkedin](https://www.linkedin.com/company/dscua/)"})
+    .addFields({name: "Welcome to University of Arizona Developer Student Club!", value:`Greetings from Developer Student Clubs at The University of Arizona (DSCUA)! We welcome you to learn more about us and watch some of our past events on our [official website](https://dsc.community.dev/the-university-of-arizona/). There are many more events to come but for now, feel free to also look through our channels to see what interests you and chat with other like minded students like yourself!`},
+    {name: "Links", value: "[Linkedin](https://www.linkedin.com/company/dscua/)"})
     member.send(newMemberEmbed)
 })
 client.login(process.env.DISCORDJS_BOT_TOKEN);
