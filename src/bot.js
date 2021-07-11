@@ -296,9 +296,10 @@ async function checkForPosts() {
     setTimeout(checkForPosts, 1000*1 )
 }
 
-// client.on('guildMemberAdd', async (member) => {
-//     newMemberEmbed = new MessageEmbed()
-//     .addFields({name: "Welcome to University of Arizona Developer Student Club!", value:`We're honored to see you here <@${member.user.id}>!\n[RSVP Here!](https://dsc.community.dev/the-university-of-arizona/)`})
-//     member.send(newMemberEmbed)
-// })
+client.on('guildMemberAdd', async (member) => {
+    newMemberEmbed = new MessageEmbed()
+    .addFields({name: "Welcome to University of Arizona Developer Student Club!", value:`Greetings from Developer Student Clubs at The University of Arizona (DSCUA)! We welcome you to learn more about us and watch some of our past events on our [website](https://dsc.community.dev/the-university-of-arizona/). There are many more events to come but for now, feel free to also look through our channels to see what interests you and chat with other like minded students like yourself!`},
+    {name: "Links", value: "[Official Website](https://dsc.community.dev/the-university-of-arizona/)\n[Instagram](https://www.instagram.com/dscua/)\n[Facebook](https://www.facebook.com/dscua)\n[Linkedin](https://www.linkedin.com/company/dscua/)"})
+    member.send(newMemberEmbed)
+})
 client.login(process.env.DISCORDJS_BOT_TOKEN);
