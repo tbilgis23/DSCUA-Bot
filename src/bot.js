@@ -280,14 +280,14 @@ async function checkForPosts() {
     }}
     const resultsDay = await Event.find(currentTimeOneDay).catch(err => {return []})
     for (const event of resultsDay) {
-        const eventLink = await event.event_link
         if (event.dayReminder == false) {
+            const eventLink = await event.event_link
             const messageChannel = await client.channels.fetch(event.event_channel);
             const event_embed = await new MessageEmbed()
             .addFields({name: `${event.event_title} is in 24 hours!`, 
             value: `Hey @here, the event will be live on our [youtube channel](https://www.youtube.com/channel/UCvh6IBI7dg_IjjZ_wBo2jZw) in 24 hours!`},
             {name: `> Event Description`, value: `> ${event.event_description}`}, {value:`[Add to Google Calendar](${google(eventLink)})`});
-            messageChannel.send({embed: event_embed});
+            messageChannel.send({ embed: event_embed });
             messageChannel.send('@here')
             event.dayReminder = true
             await event.save()
