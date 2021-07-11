@@ -310,7 +310,7 @@ client.on('guildMemberAdd', async (member) => {
     .addFields({name: "Welcome to University of Arizona Developer Student Club!", value:`Greetings from Developer Student Clubs at The University of Arizona (DSCUA)! We welcome you to learn more about us, become an official member, and watch some of our past events on our [website](https://dsc.community.dev/the-university-of-arizona/). There are many more events to come but for now, feel free to also look through our channels to see what interests you and chat with other like minded students like yourself!`},
     {name: "Links", value: "[Official Website](https://dsc.community.dev/the-university-of-arizona/)\n[Instagram](https://www.instagram.com/dscua/?hl=en)\n[Facebook](https://www.facebook.com/dscua/)\n[Linkedin](https://www.linkedin.com/company/dscua/)"})
     .setColor("#4285F4")
-    .setImage("https://pbs.twimg.com/profile_images/1182361454072209408/VEaUkAkk_400x400.png");
+    .setImage("https://pbs.twimg.com/profile_images/1182361454072209408/VEaUkAkk.png");
     member.send(newMemberEmbed)
 })
 client.login(process.env.DISCORDJS_BOT_TOKEN);
