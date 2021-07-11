@@ -159,7 +159,7 @@ client.on('message', async (message) => {
 
         const eventEmbed = await new MessageEmbed()
             .addFields({ name: eventTitle, value: eventDescription },
-                {name: "Time", value: `${eventDate.toLocaleString(DateTime.DATETIME_FULL)}\nDuration: ${eventDurationAns}\n\n[Add to Google Calendar](${google(newEventLink)})` }, 
+                {name: "Time", value: `${eventDate.toLocaleString(DateTime.DATETIME_FULL)}\nDuration: ${eventDurationAns}\n[Add to Google Calendar](${google(newEventLink)})` }, 
                 {name: "Location", value: `[DSCUA Youtube Channel](https://www.youtube.com/channel/UCvh6IBI7dg_IjjZ_wBo2jZw)`})
             .setImage(eventImage)
             .setColor("#0198E1");
@@ -178,7 +178,8 @@ client.on('message', async (message) => {
            dayReminder: false,
            liveReminder: false,
            guildId: message.guild.id,
-           event_link: google(newEventLink)
+           event_link: google(newEventLink),
+           event_image: eventImage
         })
     } else if (message.content.toLowerCase() === "$event_cancel" || message.content.toLowerCase() === "$event_list") {
         if (!message.member.hasPermission("MANAGE_CHANNELS")) return
@@ -258,11 +259,12 @@ async function checkForPosts() {
             const messageChannel = await client.channels.fetch(event.event_channel);
             const event_embed = await new MessageEmbed()
             .addFields({name: `${event.event_title} is Live!`, 
-            value: `Hey @here, the event is currently live on our [youtube channel](https://www.youtube.com/channel/UCvh6IBI7dg_IjjZ_wBo2jZw)!`},
+            value: `Hey @everyone, the event is currently live on our [youtube channel](https://www.youtube.com/channel/UCvh6IBI7dg_IjjZ_wBo2jZw)!`},
             {name: `> Event Description`, value: `> ${event.event_description}`})
-            .setColor("#0198E1");
+            .setColor("#0198E1")
+            .setImage(event.event_image);
             messageChannel.send({embed: event_embed});
-            messageChannel.send('@here')
+            messageChannel.send('@everyone')
             event.liveReminder = true
             await event.save()
     }}
@@ -273,11 +275,12 @@ async function checkForPosts() {
             const messageChannel = await client.channels.fetch(event.event_channel);
             const event_embed = await new MessageEmbed()
             .addFields({name: `${event.event_title} is in 15 minutes!`, 
-            value: `Hey @here, the event is will be live on our [youtube channel](https://www.youtube.com/channel/UCvh6IBI7dg_IjjZ_wBo2jZw) in 15 minutes!`},
+            value: `Hey @everyone, the event will be live on our [youtube channel](https://www.youtube.com/channel/UCvh6IBI7dg_IjjZ_wBo2jZw) in 15 minutes!`},
             {name: `> Event Description`, value: `> ${event.event_description}`})
-            .setColor("#0198E1");
+            .setColor("#0198E1")
+            .setImage(event.event_image);
             messageChannel.send({embed: event_embed});
-            messageChannel.send('@here')
+            messageChannel.send('@everyone')
             event.min15Reminder = true
             await event.save()
     }}
@@ -288,11 +291,12 @@ async function checkForPosts() {
             const messageChannel = await client.channels.fetch(event.event_channel);
             const event_embed = await new MessageEmbed()
             .addFields({name: `${event.event_title} is in 24 hours!`, 
-            value: `Hey @here, the event will be live on our [youtube channel](https://www.youtube.com/channel/UCvh6IBI7dg_IjjZ_wBo2jZw) in 24 hours!`},
-            {name: `> Event Description`, value: `> ${event.event_description}`+`\n[Add to Google Calendar](${google(eventLink)})`})
-            .setColor("#0198E1");
+            value: `Hey @everyone, the event will be live on our [youtube channel](https://www.youtube.com/channel/UCvh6IBI7dg_IjjZ_wBo2jZw) in 24 hours!`},
+            {name: `> Event Description`, value: `> ${event.event_description}`+`\n\n[Add to Google Calendar](${google(eventLink)})`})
+            .setColor("#0198E1")
+            .setImage(event.event_image);
             messageChannel.send({ embed: event_embed });
-            messageChannel.send('@here')
+            messageChannel.send('@everyone')
             event.dayReminder = true
             await event.save()
     }}

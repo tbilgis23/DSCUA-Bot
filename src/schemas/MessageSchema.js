@@ -10,7 +10,8 @@ const MessageSchema = new mongoose.Schema({
     dayReminder: Boolean,
     liveReminder: Boolean,
     guildId: mongoose.SchemaTypes.String,
-    event_link: mongoose.SchemaTypes.String
+    event_link: mongoose.SchemaTypes.String,
+    event_image: mongoose.SchemaTypes.String
     // event_repeat: Boolean,
     // eventPhoto: mongoose.SchemaTypes.String
 })
