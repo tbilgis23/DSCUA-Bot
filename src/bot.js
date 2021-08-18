@@ -191,8 +191,6 @@ client.on('message', async (message) => {
             if (events.guildId != message.guild.id) {
                 continue
             }
-            console.log(events.guildId)
-            console.log(message.guild.id)
             const event = `${i+1}. ${events.event_title}`
             eventListArr.push(event)
             eventListId.push(events._id)
